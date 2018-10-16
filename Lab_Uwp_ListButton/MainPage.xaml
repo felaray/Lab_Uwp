@@ -7,8 +7,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <local:SecondsToTimeSpanConverter x:Key="SecondsToTimeSpanConverter" />
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
+        <ListView ItemsSource="{x:Bind ViewModel.Data}" IsItemClickEnabled="False" IsSwipeEnabled="False" CanDragItems="False" SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Recording">
+                    <StackPanel >
+                        <TextBlock Width="500" Text="{x:Bind ArtistName}"></TextBlock>
+                        <Slider  ThumbToolTipValueConverter="{StaticResource SecondsToTimeSpanConverter}" Width="500"  Minimum="1" Maximum="5" TickFrequency="1" TickPlacement="Outside" Value="{x:Bind Value}" ValueChanged="Slider_ValueChanged" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
