@@ -17,7 +17,20 @@
                 <DataTemplate x:DataType="local:Recording">
                     <StackPanel >
                         <TextBlock Width="500" Text="{x:Bind ArtistName}"></TextBlock>
-                        <Slider  ThumbToolTipValueConverter="{StaticResource SecondsToTimeSpanConverter}" Width="500"  Minimum="1" Maximum="5" TickFrequency="1" TickPlacement="Outside" Value="{x:Bind Value}" ValueChanged="Slider_ValueChanged" />
+                        <Slider  ThumbToolTipValueConverter="{StaticResource SecondsToTimeSpanConverter}" Width="500"  Minimum="1" Maximum="5" TickFrequency="1" TickPlacement="Outside" Value="{x:Bind Value}" ValueChanged="Slider_ValueChanged">
+                            <Slider.Resources>
+                                <SolidColorBrush x:Key="SliderSelectionBackground" Color="Green" />
+                                <SolidColorBrush x:Key="SliderSelectionBorder" Color="Green" />
+                                <SolidColorBrush x:Key="SliderThumbBackground" Color="Green" />
+                                <SolidColorBrush x:Key="SliderThumbBackgroundDisabled" Color="Green" />
+                                <SolidColorBrush x:Key="SliderThumbBackgroundDragging" Color="Green" />
+                                <SolidColorBrush x:Key="SliderThumbBackgroundHover" Color="Green" />
+                                <SolidColorBrush x:Key="SliderThumbBorder" Color="Green" />
+                                <SolidColorBrush x:Key="SliderThumbBorderDisabled" Color="Green" />
+                                <SolidColorBrush x:Key="SliderThumbBorderDragging" Color="Green" />
+                                <SolidColorBrush x:Key="SliderThumbBorderHover" Color="Green" />
+                            </Slider.Resources>
+                        </Slider>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
