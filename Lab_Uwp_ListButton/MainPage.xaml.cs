@@ -13,12 +13,18 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using UwpToolkit;
+using Windows.Storage;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Microsoft.Toolkit.Uwp.Helpers;
 
 
 // 空白頁項目範本已記錄在 https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x404
 
 namespace Lab_Uwp_ListButton
 {
+
     /// <summary>
     /// 可以在本身使用或巡覽至框架內的空白頁面。
     /// </summary>
@@ -26,9 +32,42 @@ namespace Lab_Uwp_ListButton
     {
         public MainPage()
         {
-            this.InitializeComponent();
-            this.ViewModel = new RecordingViewModel();
+            var info = OperatingSystemVersion;
+            InitializeComponent();
+            ViewModel = new RecordingViewModel();
+            //bool isFilePathValid = StorageFileHelper.IsFilePathValid("Assets/TextFile1.txt");
+            //string loadedText = StorageFileHelper.ReadTextFromLocalCacheFileAsync("Assets/TextFile1.txt").Result;
+            //var result = TestAsync<Rootobject>("Assets/TextFile1.txt");
+            var file = "Assets/TextFile1.txt";
+            var result =new ModelToolKit().JsonConverterAsync<Rootobject>(new Uri(BaseUri,file));
         }
+
+
+
+        public OSVersion OperatingSystemVersion => SystemInformation.OperatingSystemVersion;
+
+        #region Test
+        public class Rootobject
+        {
+            public string No { get; set; }
+            public string User { get; set; }
+            public Question[] Question { get; set; }
+        }
+
+        public class Question
+        {
+            public string Title { get; set; }
+            public string Result1 { get; set; }
+            public string Result2 { get; set; }
+            public string Result3 { get; set; }
+            public string Result4 { get; set; }
+            public string Result5 { get; set; }
+            public int Result { get; set; }
+        }
+
+        #endregion
+
+
         public RecordingViewModel ViewModel { get; set; }
         public List<Recording> Groups { get; set; }
 
@@ -47,40 +86,25 @@ namespace Lab_Uwp_ListButton
                 {
                     default:
                     case 1:
-                        slider.Foreground = GetSolidColorBrush("#c1ff87");
+                        slider.Foreground = new ColorToolKit().GetSolidColorBrush("#c1ff87");
                         break;
                     case 2:
-                        slider.Foreground = GetSolidColorBrush("#e6ff6d");
+                        slider.Foreground = new ColorToolKit().GetSolidColorBrush("#e6ff6d");
                         break;
                     case 3:
-                        slider.Foreground = GetSolidColorBrush("#fffb1e");
+                        slider.Foreground = new ColorToolKit().GetSolidColorBrush("#fffb1e");
                         break;
                     case 4:
-                        slider.Foreground = GetSolidColorBrush("#ffaf0f");
+                        slider.Foreground = new ColorToolKit().GetSolidColorBrush("#ffaf0f");
                         break;
                     case 5:
-                        slider.Foreground = GetSolidColorBrush("#ff0000");
+                        slider.Foreground = new ColorToolKit().GetSolidColorBrush("#ff0000");
                         break;
                 }
             }
         }
 
-        /// <summary>
-        /// Hex to RGB
-        /// </summary>
-        /// <param name="hex"></param>
-        /// <returns></returns>
-        public SolidColorBrush GetSolidColorBrush(string hex)
-        {
-            hex = hex.Replace("#", string.Empty);
-            //Disable Alpha
-            //byte a = (byte)(Convert.ToUInt32(hex.Substring(0, 2), 16));
-            byte r = (byte)(Convert.ToUInt32(hex.Substring(0, 2), 16));
-            byte g = (byte)(Convert.ToUInt32(hex.Substring(2, 2), 16));
-            byte b = (byte)(Convert.ToUInt32(hex.Substring(4, 2), 16));
-            SolidColorBrush myBrush = new SolidColorBrush(Color.FromArgb(255, r, g, b));
-            return myBrush;
-        }
+
     }
 
 
@@ -113,6 +137,8 @@ namespace Lab_Uwp_ListButton
             throw new NotImplementedException();
         }
     }
+
+    #region DataModel
 
     public class Recording
     {
@@ -159,4 +185,6 @@ namespace Lab_Uwp_ListButton
         }
 
     }
+
+    #endregion
 }
