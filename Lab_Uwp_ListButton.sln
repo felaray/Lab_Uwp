@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab_Uwp_ListButton", "Lab_Uwp_ListButton\Lab_Uwp_ListButton.csproj", "{4F4A8963-890B-466A-8CD0-55420EBE4EBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UwpApp", "Lab_Uwp_ListButton\UwpApp.csproj", "{4F4A8963-890B-466A-8CD0-55420EBE4EBF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Felib", "Felib\Felib.csproj", "{04C4F438-AB79-47BF-BDB8-F1DDF9CBBE45}"
 EndProject
